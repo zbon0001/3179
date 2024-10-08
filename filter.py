@@ -1,44 +1,30 @@
-# import pandas as pd
-
-# # Load the CSV file into a DataFrame
-# df = pd.read_csv('categorizedstate_blood_donations_vs_year.csv')  # Replace with your CSV file path
-
-# # Filter for rows where blood_type is 'all'
-# all_blood_type_df = df[df['blood_type'] == 'all']
-
-# # Group by 'year' and 'state', then sum the donations
-# yearly_state_donations = all_blood_type_df.groupby(['year', 'state'])['donations'].sum().reset_index()
-
-# # Find the top 5 states by donations for each year
-# top_5_states_per_year = yearly_state_donations.sort_values(['year', 'donations'], ascending=[True, False]).groupby('year').head(5)
-
-# # Export the results to a CSV file
-# top_5_states_per_year.to_csv('top5_states_each_year.csv', index=False)  # Replace with desired output path
-
-# # Display the results
-# print(top_5_states_per_year)
-
 import pandas as pd
 
-# Load the CSV file into a DataFrame
-df = pd.read_csv('categorizedstate_blood_donations_vs_year.csv')  # Replace with your CSV file path
+# Original data (replace this with the path to your file or modify as needed)
+data = {
+    'DonorType': ['Regular donor', 'Lapsed donor', 'New donor'],
+    'Malaysia': [61.2, 18, 20.8],
+    'Selangor': [56.9, 22.3, 20.7],
+    'Melaka': [64.1, 16.8, 19.1],
+    'Pulau Pinang': [65.2, 16.9, 17.9],
+    'Pahang': [62.4, 14, 23.6],
+    'Terengganu': [57.5, 14.6, 27.9],
+    'Perak': [65, 15.4, 19.6],
+    'Sarawak': [73.8, 11.4, 14.8],
+    'Sabah': [61.5, 16.3, 22.3],
+    'Johor': [59.2, 18.8, 22],
+    'Kelantan': [56.3, 16, 27.7],
+    'Negeri Sembilan': [59.4, 18.6, 22],
+    'Kedah': [57.6, 19.1, 23.3]
+}
 
-# Filter for rows where blood_type is A, AB, B, or O
-filtered_df = df[df['blood_type'].isin(['a', 'ab', 'b', 'o'])]
+# Create a DataFrame
+df = pd.DataFrame(data)
 
-# Group by 'year', 'state', and 'blood_type', then sum the donations
-state_donations = filtered_df.groupby(['year', 'state', 'blood_type'])['donations'].sum().reset_index()
+# Melt the DataFrame to transform it into the desired long format
+df_melted = df.melt(id_vars='DonorType', var_name='State', value_name='Percentage')
 
-# Calculate the total for each blood type across all states for each year (for "Malaysia")
-malaysia_donations = state_donations.groupby(['year', 'blood_type'])['donations'].sum().reset_index()
-malaysia_donations['state'] = 'Malaysia'
+# Save the transformed DataFrame to a CSV file
+df_melted.to_csv('donor_regularities.csv', index=False)
 
-# Combine the state-level data with the "Malaysia" totals
-combined_df = pd.concat([state_donations, malaysia_donations], ignore_index=True)
-
-# Export the results to a CSV file
-combined_df.to_csv('stacked_bar_blood groups.csv', index=False)  # Replace with desired output path
-
-# Display the results
-print(combined_df)
-
+print("Transformed data saved as 'donor_regularities.csv'")

@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked bar chart of blood donations by blood type for each state, filtered by year.",
+    "data": {
+      "url": "stacked_bar_blood groups.csv",
+      "format": {"type": "csv"}  
+    },
+    "transform": [
+      {
+        "filter": {
+          "field": "year",
+          "equal": 2019
+        }
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "state",
+        "type": "nominal",
+        "axis": {
+          "labelAngle": -45,  
+          "title": "State"
+        }
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "donation",
+        "type": "quantitative",
+        "title": "Total Donations"
+      },
+      "color": {
+        "field": "blood_ty",
+        "type": "nominal",
+        "title": "Blood Type",
+        "scale": {
+          "domain": ["ab", "a", "b", "o"],
+          "range": ["#ff7f0e", "#1f77b4", "#2ca02c", "#d62728"]
+        }
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "blood_ty", "type": "nominal", "title": "Blood Type"},
+        {"field": "donation", "type": "quantitative", "title": "Donations"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": "transparent"
+      },
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    }
+  }
+  
+  

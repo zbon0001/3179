@@ -1,0 +1,41 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "donor_regularities.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "filter": "datum.State == selectedState"
+      }
+    ],
+    "params": [
+      {
+        "name": "selectedState",
+        "value": "Malaysia",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Malaysia", "Selangor", "Melaka", "Pulau Pinang", "Pahang", "Terengganu", "Perak",
+            "Sarawak", "Sabah", "Johor", "Kelantan", "Negeri Sembilan", "Kedah"
+          ],
+          "labels": [
+            "Malaysia", "Selangor", "Melaka", "Pulau Pinang", "Pahang", "Terengganu", "Perak",
+            "Sarawak", "Sabah", "Johor", "Kelantan", "Negeri Sembilan", "Kedah"
+          ],
+          "name": "Select State: "
+        }
+      }
+    ],
+    "mark": "arc",
+    "encoding": {
+      "theta": {"field": "Percentage", "type": "quantitative"},
+      "color": {"field": "DonorType", "type": "nominal"},
+      "tooltip": [
+        {"field": "DonorType", "type": "nominal", "title": "Donor Type"},
+        {"field": "Percentage", "type": "quantitative", "title": "Percentage"}
+      ]
+    },
+    "view": {"stroke": null}
+  }
+  

@@ -1,0 +1,47 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Bump chart showing top 5 states by donation count over the years.",
+    "data": {
+      "url": "top5_states_each_year.csv"
+    },
+    "transform": [
+      {
+        "window": [{"op": "rank", "as": "rank"}],
+        "groupby": ["year"],
+        "sort": [{"field": "donations", "order": "descending"}]
+      },
+      {
+        "filter": "datum.rank <= 5"
+      }
+    ],
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      "y": {
+        "field": "rank",
+        "type": "ordinal",
+        "scale": {"reverse": true},
+        "title": "Rank"
+      },
+      "color": {
+        "field": "state",
+        "type": "nominal",
+        "title": "State",
+        "legend": {"title": "State"}
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "year", "type": "ordinal", "title": "Year"},
+        {"field": "donations", "type": "quantitative", "title": "Donations"},
+        {"field": "rank", "type": "ordinal", "title": "Rank"}
+      ]
+    }
+  }
+  
