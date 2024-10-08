@@ -1,0 +1,281 @@
+year,state,blood_type,donations
+2019,Johor,a,10277
+2019,Johor,ab,2128
+2019,Johor,b,11043
+2019,Johor,o,17813
+2019,Kedah,a,10539
+2019,Kedah,ab,2869
+2019,Kedah,b,11979
+2019,Kedah,o,17119
+2019,Kelantan,a,3067
+2019,Kelantan,ab,801
+2019,Kelantan,b,3046
+2019,Kelantan,o,4669
+2019,Melaka,a,7790
+2019,Melaka,ab,1835
+2019,Melaka,b,7790
+2019,Melaka,o,12818
+2019,Negeri Sembilan,a,4463
+2019,Negeri Sembilan,ab,1082
+2019,Negeri Sembilan,b,4965
+2019,Negeri Sembilan,o,7796
+2019,Pahang,a,3872
+2019,Pahang,ab,1035
+2019,Pahang,b,4447
+2019,Pahang,o,6456
+2019,Perak,a,10354
+2019,Perak,ab,2573
+2019,Perak,b,11159
+2019,Perak,o,16946
+2019,Pulau Pinang,a,10885
+2019,Pulau Pinang,ab,2803
+2019,Pulau Pinang,b,11353
+2019,Pulau Pinang,o,18407
+2019,Sabah,a,8122
+2019,Sabah,ab,1686
+2019,Sabah,b,8677
+2019,Sabah,o,17671
+2019,Sarawak,a,9055
+2019,Sarawak,ab,2650
+2019,Sarawak,b,10829
+2019,Sarawak,o,15033
+2019,Selangor,a,6842
+2019,Selangor,ab,1810
+2019,Selangor,b,7576
+2019,Selangor,o,11836
+2019,Terengganu,a,3931
+2019,Terengganu,ab,1164
+2019,Terengganu,b,4631
+2019,Terengganu,o,6578
+2019,W.P. Kuala Lumpur,a,50198
+2019,W.P. Kuala Lumpur,ab,11353
+2019,W.P. Kuala Lumpur,b,53934
+2019,W.P. Kuala Lumpur,o,83009
+2020,Johor,a,9924
+2020,Johor,ab,2093
+2020,Johor,b,10996
+2020,Johor,o,17692
+2020,Kedah,a,4647
+2020,Kedah,ab,1272
+2020,Kedah,b,5286
+2020,Kedah,o,7671
+2020,Kelantan,a,3401
+2020,Kelantan,ab,865
+2020,Kelantan,b,3364
+2020,Kelantan,o,5127
+2020,Melaka,a,7072
+2020,Melaka,ab,1690
+2020,Melaka,b,7316
+2020,Melaka,o,11458
+2020,Negeri Sembilan,a,3988
+2020,Negeri Sembilan,ab,983
+2020,Negeri Sembilan,b,4528
+2020,Negeri Sembilan,o,6899
+2020,Pahang,a,5720
+2020,Pahang,ab,1379
+2020,Pahang,b,6270
+2020,Pahang,o,8786
+2020,Perak,a,9919
+2020,Perak,ab,2558
+2020,Perak,b,10924
+2020,Perak,o,16685
+2020,Pulau Pinang,a,9035
+2020,Pulau Pinang,ab,2202
+2020,Pulau Pinang,b,9807
+2020,Pulau Pinang,o,15468
+2020,Sabah,a,7576
+2020,Sabah,ab,1685
+2020,Sabah,b,8236
+2020,Sabah,o,16572
+2020,Sarawak,a,7923
+2020,Sarawak,ab,2277
+2020,Sarawak,b,9684
+2020,Sarawak,o,14076
+2020,Selangor,a,7117
+2020,Selangor,ab,1824
+2020,Selangor,b,7794
+2020,Selangor,o,12497
+2020,Terengganu,a,3769
+2020,Terengganu,ab,1083
+2020,Terengganu,b,4325
+2020,Terengganu,o,6184
+2020,W.P. Kuala Lumpur,a,42860
+2020,W.P. Kuala Lumpur,ab,9497
+2020,W.P. Kuala Lumpur,b,45793
+2020,W.P. Kuala Lumpur,o,71780
+2021,Johor,a,9745
+2021,Johor,ab,2162
+2021,Johor,b,10870
+2021,Johor,o,17632
+2021,Kedah,a,4852
+2021,Kedah,ab,1234
+2021,Kedah,b,5692
+2021,Kedah,o,8168
+2021,Kelantan,a,3144
+2021,Kelantan,ab,919
+2021,Kelantan,b,3210
+2021,Kelantan,o,4822
+2021,Melaka,a,7082
+2021,Melaka,ab,1788
+2021,Melaka,b,7471
+2021,Melaka,o,11615
+2021,Negeri Sembilan,a,3609
+2021,Negeri Sembilan,ab,858
+2021,Negeri Sembilan,b,4071
+2021,Negeri Sembilan,o,6397
+2021,Pahang,a,5767
+2021,Pahang,ab,1440
+2021,Pahang,b,6382
+2021,Pahang,o,9239
+2021,Perak,a,10380
+2021,Perak,ab,2590
+2021,Perak,b,11602
+2021,Perak,o,18578
+2021,Pulau Pinang,a,8717
+2021,Pulau Pinang,ab,2077
+2021,Pulau Pinang,b,9527
+2021,Pulau Pinang,o,14890
+2021,Sabah,a,6836
+2021,Sabah,ab,1472
+2021,Sabah,b,7538
+2021,Sabah,o,15364
+2021,Sarawak,a,8277
+2021,Sarawak,ab,2307
+2021,Sarawak,b,10286
+2021,Sarawak,o,14913
+2021,Selangor,a,6265
+2021,Selangor,ab,1502
+2021,Selangor,b,6984
+2021,Selangor,o,11340
+2021,Terengganu,a,3955
+2021,Terengganu,ab,1156
+2021,Terengganu,b,4512
+2021,Terengganu,o,6557
+2021,W.P. Kuala Lumpur,a,43323
+2021,W.P. Kuala Lumpur,ab,9262
+2021,W.P. Kuala Lumpur,b,47708
+2021,W.P. Kuala Lumpur,o,73662
+2022,Johor,a,10550
+2022,Johor,ab,2145
+2022,Johor,b,11569
+2022,Johor,o,18568
+2022,Kedah,a,5211
+2022,Kedah,ab,1327
+2022,Kedah,b,5944
+2022,Kedah,o,8646
+2022,Kelantan,a,4042
+2022,Kelantan,ab,1010
+2022,Kelantan,b,3838
+2022,Kelantan,o,6169
+2022,Melaka,a,7676
+2022,Melaka,ab,1795
+2022,Melaka,b,8114
+2022,Melaka,o,12925
+2022,Negeri Sembilan,a,3973
+2022,Negeri Sembilan,ab,770
+2022,Negeri Sembilan,b,4240
+2022,Negeri Sembilan,o,6934
+2022,Pahang,a,6069
+2022,Pahang,ab,1459
+2022,Pahang,b,6613
+2022,Pahang,o,9708
+2022,Perak,a,11525
+2022,Perak,ab,2883
+2022,Perak,b,12674
+2022,Perak,o,19414
+2022,Pulau Pinang,a,9593
+2022,Pulau Pinang,ab,2344
+2022,Pulau Pinang,b,10333
+2022,Pulau Pinang,o,16150
+2022,Sabah,a,8036
+2022,Sabah,ab,1750
+2022,Sabah,b,8758
+2022,Sabah,o,16986
+2022,Sarawak,a,9565
+2022,Sarawak,ab,2526
+2022,Sarawak,b,11388
+2022,Sarawak,o,16648
+2022,Selangor,a,7213
+2022,Selangor,ab,1665
+2022,Selangor,b,7843
+2022,Selangor,o,12590
+2022,Terengganu,a,4466
+2022,Terengganu,ab,1251
+2022,Terengganu,b,5081
+2022,Terengganu,o,7428
+2022,W.P. Kuala Lumpur,a,50271
+2022,W.P. Kuala Lumpur,ab,10614
+2022,W.P. Kuala Lumpur,b,54975
+2022,W.P. Kuala Lumpur,o,86536
+2023,Johor,a,10622
+2023,Johor,ab,2296
+2023,Johor,b,11663
+2023,Johor,o,19124
+2023,Kedah,a,5420
+2023,Kedah,ab,1345
+2023,Kedah,b,6044
+2023,Kedah,o,8754
+2023,Kelantan,a,4424
+2023,Kelantan,ab,1109
+2023,Kelantan,b,4544
+2023,Kelantan,o,6639
+2023,Melaka,a,7280
+2023,Melaka,ab,1755
+2023,Melaka,b,7532
+2023,Melaka,o,11877
+2023,Negeri Sembilan,a,4052
+2023,Negeri Sembilan,ab,857
+2023,Negeri Sembilan,b,4378
+2023,Negeri Sembilan,o,7130
+2023,Pahang,a,5801
+2023,Pahang,ab,1342
+2023,Pahang,b,6395
+2023,Pahang,o,9263
+2023,Perak,a,11565
+2023,Perak,ab,2789
+2023,Perak,b,12962
+2023,Perak,o,19601
+2023,Pulau Pinang,a,10235
+2023,Pulau Pinang,ab,2597
+2023,Pulau Pinang,b,11319
+2023,Pulau Pinang,o,17482
+2023,Sabah,a,9049
+2023,Sabah,ab,1996
+2023,Sabah,b,9715
+2023,Sabah,o,19064
+2023,Sarawak,a,9984
+2023,Sarawak,ab,2499
+2023,Sarawak,b,11922
+2023,Sarawak,o,17188
+2023,Selangor,a,7473
+2023,Selangor,ab,1557
+2023,Selangor,b,8290
+2023,Selangor,o,12810
+2023,Terengganu,a,4687
+2023,Terengganu,ab,1398
+2023,Terengganu,b,5380
+2023,Terengganu,o,7892
+2023,W.P. Kuala Lumpur,a,51695
+2023,W.P. Kuala Lumpur,ab,10513
+2023,W.P. Kuala Lumpur,b,56008
+2023,W.P. Kuala Lumpur,o,88057
+2019,Malaysia,a,139395
+2019,Malaysia,ab,33789
+2019,Malaysia,b,151429
+2019,Malaysia,o,236151
+2020,Malaysia,a,122951
+2020,Malaysia,ab,29408
+2020,Malaysia,b,134323
+2020,Malaysia,o,210895
+2021,Malaysia,a,121952
+2021,Malaysia,ab,28767
+2021,Malaysia,b,135853
+2021,Malaysia,o,213177
+2022,Malaysia,a,138190
+2022,Malaysia,ab,31539
+2022,Malaysia,b,151370
+2022,Malaysia,o,238702
+2023,Malaysia,a,142287
+2023,Malaysia,ab,32053
+2023,Malaysia,b,156152
+2023,Malaysia,o,244881
