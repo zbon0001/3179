@@ -4,7 +4,9 @@
     "data": {
     "url": "https://raw.githubusercontent.com/FIT3179/Datasets/main/city_daily_cost.csv"
     },
-    "mark": "bar",
+
+
+    "mark": "line",
     "encoding": {
     "x": { "field": "daily_cost", "type": "quantitative" },
     "y": { "field": "city", "type": "nominal" }
