@@ -1,5 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Total Blood Donations of States for Past Five Years ",
+    "width": 400,
+    "height": 300,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
       "url": "filtered_stacked_bar_blood_groups.csv",
@@ -109,10 +112,7 @@
         "field": "blood_type",
         "type": "nominal",
         "title": "Blood Type",
-        "scale": {
-          "domain": ["ab", "a", "b", "o"],
-          "range": ["#ff7f0e", "#1f77b4", "#2ca02c", "#d62728"]
-        }
+        "scale": {"scheme": "redyellowblue","type": "sequential"}
       },
       "tooltip": [
         {"field": "state", "type": "nominal", "title": "State"},

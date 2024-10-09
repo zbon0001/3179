@@ -1,5 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Donor Regularity",
+    "width": 300,
+    "height": 300,
     "data": {
       "url": "donor_regularities.csv",
       "format": {"type": "csv"}
@@ -30,7 +33,7 @@
     "mark": "arc",
     "encoding": {
       "theta": {"field": "Percentage", "type": "quantitative"},
-      "color": {"field": "DonorType", "type": "nominal"},
+      "color": {"field": "DonorType", "type": "nominal", "scale": {"scheme": "redyellowblue","type": "sequential"}},
       "tooltip": [
         {"field": "DonorType", "type": "nominal", "title": "Donor Type"},
         {"field": "Percentage", "type": "quantitative", "title": "Percentage"}

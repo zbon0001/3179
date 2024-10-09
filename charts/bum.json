@@ -1,5 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Top 5 states with highest donation count from 2019-2023",
     "description": "Bump chart showing top 5 states by donation count over the years.",
     "data": {
       "url": "top5_states_each_year.csv"
@@ -8,7 +9,7 @@
       {
         "window": [{"op": "rank", "as": "rank"}],
         "groupby": ["year"],
-        "sort": [{"field": "donations", "order": "descending"}]
+        "sort": [{"field": "donations", "order": "ascending"}]
       },
       {
         "filter": "datum.rank <= 5"
@@ -16,8 +17,10 @@
     ],
     "mark": {
       "type": "line",
-      "point": true
+      "point": {"size": 200}
     },
+    "width": 450,    
+    "height": 300,
     "encoding": {
       "x": {
         "field": "year",
@@ -27,7 +30,6 @@
       "y": {
         "field": "rank",
         "type": "ordinal",
-        "scale": {"reverse": true},
         "title": "Rank"
       },
       "color": {

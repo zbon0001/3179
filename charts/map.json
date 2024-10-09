@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Percentage of population aged 17-65 in each state which has donated at least once in the past year",
+    "width": 600,
+    "height": 300,
+    "projection": {"type": "equalEarth"},
+    "layer": [
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/yzyz5796/3179/refs/heads/main/A2/ne_10m_admin_1_states_provinces.json",
+                "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+            },
+            "transform": [
+                {
+                    "lookup": "properties.name",
+                    "from": {
+                        "data": {
+                            "url": "map_data.csv",
+                            "format": {"type": "csv"}
+                        },
+                        "key": "State",
+                        "fields": ["Percentage of Population"]
+                    }
+                },
+                {
+                    "calculate": "datum['Percentage of Population'] == null ? 0 : datum['Percentage of Population']",
+                    "as": "Population Percentage"
+                }
+            ],
+            "mark": {"type": "geoshape"},
+            "encoding": {
+                "color": {
+                "field": "Percentage of Population",
+                "type": "quantitative",
+                "scale": {
+                    "scheme": "reds",
+                    "type": "sequential"
+                },
+                "legend": {
+                  "title": "Percentage of Population",
+                  "orient": "bottom"
+                }
+                },
+                "tooltip": [
+                {"field": "properties.name", "type": "nominal", "title": "State"},
+                {
+                    "field": "Percentage of Population",
+                    "type": "quantitative",
+                    "title": "Percentage of Population"
+                }
+                ]
+            }
+        }
+    ]
+}
