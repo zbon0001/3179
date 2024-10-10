@@ -5,7 +5,7 @@
     "height": 300,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
-      "url": "filtered_stacked_bar_blood_groups.csv",
+      "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
       "format": {"type": "csv"}
     },
     "params": [

@@ -3,7 +3,7 @@
     "title": "Top 5 states with highest donation count from 2019-2023",
     "description": "Bump chart showing top 5 states by donation count over the years.",
     "data": {
-      "url": "top5_states_each_year.csv"
+      "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/top5_states_each_year.csv"
     },
     "transform": [
       {

@@ -15,8 +15,7 @@
                     "lookup": "properties.name",
                     "from": {
                         "data": {
-                            "url": "map_data.csv",
-                            "format": {"type": "csv"}
+                            "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/map_data.csv"
                         },
                         "key": "State",
                         "fields": ["Percentage of Population"]

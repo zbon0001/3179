@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation of States in Malaysia</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.0"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .chart {
+            margin: 40px 0;
+        }
+        .description {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Blood Donation of States in Malaysia</h1>
+
+<div class="chart">
+    <div class="description">
+        <strong>Percentage of Population Aged 17-65 Who Donated:</strong> This map illustrates the percentage of the population aged between 17 and 65 in each state that has donated blood at least once in the past year.
+    </div>
+    <div id="map"></div>
+</div>
+
+<div class="chart">
+    <div class="description">
+        <strong>Top 5 States with Highest Donation Count:</strong> This bump chart shows the ranking of the top 5 states by blood donation counts from 2019 to 2023, highlighting trends over the years.
+    </div>
+    <div id="bump-chart"></div>
+</div>
+
+<div class="chart">
+    <div class="description">
+        <strong>Donor Regularity:</strong> The pie chart visualizes the regularity of blood donations among different donor types, allowing for selection of specific states to view detailed distribution.
+    </div>
+    <div id="pie-chart"></div>
+</div>
+
+<div class="chart">
+    <div class="description">
+        <strong>Total Blood Donations of States:</strong> This stacked bar chart presents the total blood donations by blood type for various states over the past five years, with filtering options for specific years and states.
+    </div>
+    <div id="stacked-bar-chart"></div>
+</div>
+
+<script>
+// Map Chart
+const mapSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Percentage of population aged 17-65 in each state which has donated at least once in the past year",
+    "width": 600,
+    "height": 300,
+    "projection": {"type": "equalEarth"},
+    "layer": [
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/yzyz5796/3179/refs/heads/main/A2/ne_10m_admin_1_states_provinces.json",
+                "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+            },
+            "transform": [
+                {
+                    "lookup": "properties.name",
+                    "from": {
+                        "data": {
+                            "url": "map_data.csv",
+                            "format": {"type": "csv"}
+                        },
+                        "key": "State",
+                        "fields": ["Percentage of Population"]
+                    }
+                },
+                {
+                    "calculate": "datum['Percentage of Population'] == null ? 0 : datum['Percentage of Population']",
+                    "as": "Population Percentage"
+                }
+            ],
+            "mark": {"type": "geoshape"},
+            "encoding": {
+                "color": {
+                    "field": "Percentage of Population",
+                    "type": "quantitative",
+                    "scale": {
+                        "scheme": "reds",
+                        "type": "sequential"
+                    },
+                    "legend": {
+                        "title": "Percentage of Population",
+                        "orient": "bottom"
+                    }
+                },
+                "tooltip": [
+                    {"field": "properties.name", "type": "nominal", "title": "State"},
+                    {
+                        "field": "Percentage of Population",
+                        "type": "quantitative",
+                        "title": "Percentage of Population"
+                    }
+                ]
+            }
+        }
+    ]
+};
+
+// Bump Chart
+const bumpChartSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Top 5 states with highest donation count from 2019-2023",
+    "description": "Bump chart showing top 5 states by donation count over the years.",
+    "data": {
+        "url": "top5_states_each_year.csv"
+    },
+    "transform": [
+        {
+            "window": [{"op": "rank", "as": "rank"}],
+            "groupby": ["year"],
+            "sort": [{"field": "donations", "order": "ascending"}]
+        },
+        {
+            "filter": "datum.rank <= 5"
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {"size": 200}
+    },
+    "width": 450,
+    "height": 300,
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "rank",
+            "type": "ordinal",
+            "title": "Rank"
+        },
+        "color": {
+            "field": "state",
+            "type": "nominal",
+            "title": "State",
+            "legend": {"title": "State"}
+        },
+        "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "year", "type": "ordinal", "title": "Year"},
+            {"field": "donations", "type": "quantitative", "title": "Donations"},
+            {"field": "rank", "type": "ordinal", "title": "Rank"}
+        ]
+    }
+};
+
+// Pie Chart
+const pieChartSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Donor Regularity",
+    "width": 300,
+    "height": 300,
+    "data": {
+        "url": "donor_regularities.csv",
+        "format": {"type": "csv"}
+    },
+    "transform": [
+        {
+            "filter": "datum.State == selectedState"
+        }
+    ],
+    "params": [
+        {
+            "name": "selectedState",
+            "value": "Malaysia",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "Malaysia", "Selangor", "Melaka", "Pulau Pinang", "Pahang", "Terengganu", "Perak",
+                    "Sarawak", "Sabah", "Johor", "Kelantan", "Negeri Sembilan", "Kedah"
+                ],
+                "labels": [
+                    "Malaysia", "Selangor", "Melaka", "Pulau Pinang", "Pahang", "Terengganu", "Perak",
+                    "Sarawak", "Sabah", "Johor", "Kelantan", "Negeri Sembilan", "Kedah"
+                ],
+                "name": "Select State: "
+            }
+        }
+    ],
+    "mark": "arc",
+    "encoding": {
+        "theta": {"field": "Percentage", "type": "quantitative"},
+        "color": {"field": "DonorType", "type": "nominal", "scale": {"scheme": "redyellowblue","type": "sequential"}},
+        "tooltip": [
+            {"field": "DonorType", "type": "nominal", "title": "Donor Type"},
+            {"field": "Percentage", "type": "quantitative", "title": "Percentage"}
+        ]
+    },
+    "view": {"stroke": null}
+};
+
+// Stacked Bar Chart
+const stackedBarChartSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Total Blood Donations of States for Past Five Years ",
+    "width": 400,
+    "height": 300,
+    "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
+    "data": {
+        "url": "filtered_stacked_bar_blood_groups.csv",
+        "format": {"type": "csv"}
+    },
+    "params": [
+        {
+            "name": "yearSelect",
+            "value": 2019,
+            "bind": {
+                "input": "select",
+                "options": [2019, 2020, 2021, 2022, 2023],
+                "name": "Select Year: "
+            }
+        },
+        {
+            "name": "Johor",
+            "value": true,
+            "bind": {"input": "checkbox", "name": "Johor"}
+        },
+        {
+            "name": "Kedah",
+            "value": true,
+            "bind": {"input": "checkbox", "name": "Kedah"}
+        },
+        {
+            "name": "Kelantan",
+            "value": true,
+            "bind": {"input": "checkbox", "name": "Kelantan"}
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Year == yearSelect"
+        },
+        {
+            "filter": "datum.State == 'Johor' || datum.State == 'Kedah' || datum.State == 'Kelantan' || datum.State == 'Malaysian Average'"
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "BloodType",
+            "type": "nominal",
+            "title": "Blood Type"
+        },
+        "y": {
+            "field": "TotalDonations",
+            "type": "quantitative",
+            "title": "Total Donations"
+        },
+        "color": {
+            "field": "State",
+            "type": "nominal",
+            "scale": {"scheme": "category10"},
+            "title": "State"
+        },
+        "tooltip": [
+            {"field": "State", "type": "nominal", "title": "State"},
+            {"field": "TotalDonations", "type": "quantitative", "title": "Total Donations"},
+            {"field": "BloodType", "type": "nominal", "title": "Blood Type"}
+        ]
+    },
+    "view": {"stroke": null}
+};
+
+// Embed Charts
+vegaEmbed('#map', mapSpec);
+vegaEmbed('#bump-chart', bumpChartSpec);
+vegaEmbed('#pie-chart', pieChartSpec);
+vegaEmbed('#stacked-bar-chart', stackedBarChartSpec);
+</script>
+
+</body>
+</html>
