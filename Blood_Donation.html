@@ -68,7 +68,7 @@ const mapSpec = {
     "layer": [
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/yzyz5796/3179/refs/heads/main/A2/ne_10m_admin_1_states_provinces.json",
+                "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/ne_10m_admin_1_states_provinces.json",
                 "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
             },
             "transform": [
@@ -76,8 +76,7 @@ const mapSpec = {
                     "lookup": "properties.name",
                     "from": {
                         "data": {
-                            "url": "map_data.csv",
-                            "format": {"type": "csv"}
+                            "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/map_data.csv"
                         },
                         "key": "State",
                         "fields": ["Percentage of Population"]
@@ -121,7 +120,7 @@ const bumpChartSpec = {
     "title": "Top 5 states with highest donation count from 2019-2023",
     "description": "Bump chart showing top 5 states by donation count over the years.",
     "data": {
-        "url": "top5_states_each_year.csv"
+        "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/top5_states_each_year.csv"
     },
     "transform": [
         {
@@ -172,8 +171,7 @@ const pieChartSpec = {
     "width": 300,
     "height": 300,
     "data": {
-        "url": "donor_regularities.csv",
-        "format": {"type": "csv"}
+        "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/donor_regularities.csv"
     },
     "transform": [
         {
@@ -218,69 +216,132 @@ const stackedBarChartSpec = {
     "height": 300,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
-        "url": "filtered_stacked_bar_blood_groups.csv",
+        "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
         "format": {"type": "csv"}
     },
     "params": [
-        {
-            "name": "yearSelect",
-            "value": 2019,
-            "bind": {
-                "input": "select",
-                "options": [2019, 2020, 2021, 2022, 2023],
-                "name": "Select Year: "
-            }
-        },
-        {
-            "name": "Johor",
-            "value": true,
-            "bind": {"input": "checkbox", "name": "Johor"}
-        },
-        {
-            "name": "Kedah",
-            "value": true,
-            "bind": {"input": "checkbox", "name": "Kedah"}
-        },
-        {
-            "name": "Kelantan",
-            "value": true,
-            "bind": {"input": "checkbox", "name": "Kelantan"}
+      {
+        "name": "yearSelect",
+        "value": 2019,
+        "bind": {
+          "input": "select",
+          "options": [2019, 2020, 2021, 2022, 2023],
+          "name": "Select Year: "
         }
+      },
+      {
+        "name": "Johor",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Johor"}
+      },
+      {
+        "name": "Kedah",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Kedah"}
+      },
+      {
+        "name": "Kelantan",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Kelantan"}
+      },
+      {
+        "name": "Melaka",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Melaka"}
+      },
+      {
+        "name": "Negeri_Sembilan",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Negeri Sembilan"}
+      },
+      {
+        "name": "Pahang",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Pahang"}
+      },
+      {
+        "name": "Penang",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Penang"}
+      },
+      {
+        "name": "Perak",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Perak"}
+      },
+      {
+        "name": "Selangor",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Selangor"}
+      },
+      {
+        "name": "Terengganu",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Terengganu"}
+      },
+      {
+        "name": "Sabah",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Sabah"}
+      },
+      {
+        "name": "Sarawak",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "Sarawak"}
+      },
+      {
+        "name": "Wp_Kuala_Lumpur",
+        "value": true,
+        "bind": {"input": "checkbox", "name": "W.P. Kuala Lumpur"}
+      }
     ],
     "transform": [
-        {
-            "filter": "datum.Year == yearSelect"
-        },
-        {
-            "filter": "datum.State == 'Johor' || datum.State == 'Kedah' || datum.State == 'Kelantan' || datum.State == 'Malaysian Average'"
-        }
+      {
+        "filter": "datum.year == yearSelect"
+      },
+      {
+        "filter": "(datum.state == 'Johor' && Johor) || (datum.state == 'Kedah' && Kedah) || (datum.state == 'Kelantan' && Kelantan) || (datum.state == 'Melaka' && Melaka) || (datum.state == 'Negeri Sembilan' && Negeri_Sembilan) || (datum.state == 'Pahang' && Pahang) || (datum.state == 'Penang' && Penang) || (datum.state == 'Perak' && Perak) || (datum.state == 'Selangor' && Selangor) || (datum.state == 'Terengganu' && Terengganu) || (datum.state == 'Sabah' && Sabah) || (datum.state == 'Sarawak' && Sarawak) || (datum.state == 'W.P. Kuala Lumpur' && Wp_Kuala_Lumpur)"
+      }
     ],
     "mark": "bar",
     "encoding": {
         "x": {
-            "field": "BloodType",
+            "field": "state",
             "type": "nominal",
-            "title": "Blood Type"
+            "axis": {
+                "labelAngle": -45,
+                "title": "State"
+            }
         },
         "y": {
-            "field": "TotalDonations",
+            "aggregate": "sum",
+            "field": "donations",
             "type": "quantitative",
             "title": "Total Donations"
         },
         "color": {
-            "field": "State",
+            "field": "blood_type",
             "type": "nominal",
-            "scale": {"scheme": "category10"},
-            "title": "State"
+            "title": "Blood Type",
+            "scale": {"scheme": "redyellowblue","type": "sequential"}
         },
         "tooltip": [
-            {"field": "State", "type": "nominal", "title": "State"},
-            {"field": "TotalDonations", "type": "quantitative", "title": "Total Donations"},
-            {"field": "BloodType", "type": "nominal", "title": "Blood Type"}
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "blood_type", "type": "nominal", "title": "Blood Type"},
+            {"field": "donations", "type": "quantitative", "title": "Donations"}
         ]
     },
-    "view": {"stroke": null}
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
 };
+
 
 // Embed Charts
 vegaEmbed('#map', mapSpec);
