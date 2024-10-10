@@ -81,7 +81,7 @@
             Percentage of Population Aged 17-65 Who Donated
         </div>
         <div class="stat-description">
-            This map illustrates the percentage of the population aged between 17 and 65 in each state that has donated blood at least once in the past year.
+            The map indicates significant regional disparities in blood donation rates across states. The highest percentages of donors are concentrated in specific states, particularly in western Malaysia, with a notable absence of data or lower rates in several eastern regions. This suggests a potential need for targeted awareness campaigns and donation drives in areas with lower participation rates. 
         </div>
         <div id="map"></div>
     </div>
@@ -92,8 +92,7 @@
             Top 5 States with Highest Donation Count (2019-2023)
         </div>
         <div class="stat-description">
-            This bump chart shows the ranking of the top 5 states by blood donation counts from 2019 to 2023, highlighting trends over the years.
-        </div>
+            The bump chart illustrates trends in blood donation counts over the years. Kuala Lumpur  consistently show higher donation counts, indicating robust donor engagement in these states. In contrast, other state, such as Perak, exhibit fluctuations, with some years showing significant decreases. Understanding these trends can help identify effective strategies and interventions for improving donation rates in states experiencing declines.        </div>
         <div id="bump-chart"></div>
     </div>
 
@@ -103,19 +102,17 @@
             Donor Regularity by State
         </div>
         <div class="stat-description">
-            The pie chart visualizes the regularity of blood donations among different donor types, allowing for selection of specific states to view detailed distribution.
-        </div>
+            From the chart, it can be observed that regular donors make up the largest portion, indicating a stable base of committed individuals who donate blood consistently. This is encouraging, as regular donors are crucial for maintaining a reliable blood supply. However, the presence of new donors and lapsed donors suggests opportunities for growth.         </div>
         <div id="pie-chart"></div>
     </div>
 
     <!-- Stacked Bar Chart -->
     <div class="map-container">
         <div class="chart-title">
-            Total Blood Donations by Blood Type (Past Five Years)
+            Total Blood Donations by Blood Type (2019-2023)
         </div>
         <div class="stat-description">
-            This stacked bar chart presents the total blood donations by blood type for various states over the past five years.
-        </div>
+            The stacked bar chart reveals the distribution of total blood donations by type over five years. Type O blood has the highest donation volume, highlighting its critical importance for transfusions. This trend underlines the need for ongoing efforts to promote donations of less common blood types, such as AB, to ensure a balanced blood supply that meets patient needs.        </div>
         <div id="stacked-bar-chart"></div>
     </div>
 </div>
@@ -124,8 +121,8 @@
 // Map Chart
 const mapSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1350,
-    "height": 600,
+    "width": 1600,
+    "height": 650,
     "projection": {"type": "equalEarth"},
     "layer": [
         {
@@ -197,8 +194,8 @@ const bumpChartSpec = {
         "type": "line",
         "point": {"size": 200}
     },
-    "width": 600,
-    "height": 350,
+    "width": 820,
+    "height": 400,
     "encoding": {
         "x": {
             "field": "year",
@@ -272,8 +269,8 @@ const pieChartSpec = {
 // Stacked Bar Chart
 const stackedBarChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1000,
-    "height": 500,
+    "width": 1500,
+    "height": 600,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
       "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
