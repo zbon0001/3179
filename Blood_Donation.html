@@ -11,17 +11,49 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f4f4f9;
         }
         h1 {
             text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 40px;
         }
-        .chart {
-            margin: 40px 0;
+        .chart-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .stat-description {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Creates a 2-column grid */
+            grid-gap: 20px; /* Space between the grid items */
+        }
+        .map-container {
+            grid-column: span 2; /* Make the map span across both columns */
+            background-color: #ffffff;
+            padding: 50px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .chart-container {
+            background-color: #ffffff;
+            padding: 50px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .description {
             font-size: 1.1em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-align: justify;
+            color: #444;
         }
     </style>
 </head>
@@ -29,41 +61,58 @@
 
 <h1>Blood Donation of States in Malaysia</h1>
 
-<div class="chart">
-    <div class="description">
-        <strong>Percentage of Population Aged 17-65 Who Donated:</strong> This map illustrates the percentage of the population aged between 17 and 65 in each state that has donated blood at least once in the past year.
+<div class="container">
+    <!-- Map Chart -->
+    <div class="map-container">
+        <div class="chart-title">
+            Percentage of Population Aged 17-65 Who Donated
+        </div>
+        <div class="stat-description">
+            This map illustrates the percentage of the population aged between 17 and 65 in each state that has donated blood at least once in the past year.
+        </div>
+        <div id="map"></div>
     </div>
-    <div id="map"></div>
-</div>
 
-<div class="chart">
-    <div class="description">
-        <strong>Top 5 States with Highest Donation Count:</strong> This bump chart shows the ranking of the top 5 states by blood donation counts from 2019 to 2023, highlighting trends over the years.
+    <!-- Bump Chart -->
+    <div class="chart-container">
+        <div class="chart-title">
+            Top 5 States with Highest Donation Count (2019-2023)
+        </div>
+        <div class="stat-description">
+            This bump chart shows the ranking of the top 5 states by blood donation counts from 2019 to 2023, highlighting trends over the years.
+        </div>
+        <div id="bump-chart"></div>
     </div>
-    <div id="bump-chart"></div>
-</div>
 
-<div class="chart">
-    <div class="description">
-        <strong>Donor Regularity:</strong> The pie chart visualizes the regularity of blood donations among different donor types, allowing for selection of specific states to view detailed distribution.
+    <!-- Pie Chart -->
+    <div class="chart-container">
+        <div class="chart-title">
+            Donor Regularity by State
+        </div>
+        <div class="stat-description">
+            The pie chart visualizes the regularity of blood donations among different donor types, allowing for selection of specific states to view detailed distribution.
+        </div>
+        <div id="pie-chart"></div>
     </div>
-    <div id="pie-chart"></div>
-</div>
 
-<div class="chart">
-    <div class="description">
-        <strong>Total Blood Donations of States:</strong> This stacked bar chart presents the total blood donations by blood type for various states over the past five years, with filtering options for specific years and states.
+    <!-- Stacked Bar Chart -->
+    <div class="map-container">
+        <div class="chart-title">
+            Total Blood Donations by Blood Type (Past Five Years)
+        </div>
+        <div class="stat-description">
+            This stacked bar chart presents the total blood donations by blood type for various states over the past five years.
+        </div>
+        <div id="stacked-bar-chart"></div>
     </div>
-    <div id="stacked-bar-chart"></div>
 </div>
-
 <script>
+
 // Map Chart
 const mapSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Percentage of population aged 17-65 in each state which has donated at least once in the past year",
-    "width": 600,
-    "height": 300,
+    "width": 1350,
+    "height": 600,
     "projection": {"type": "equalEarth"},
     "layer": [
         {
@@ -117,7 +166,6 @@ const mapSpec = {
 // Bump Chart
 const bumpChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Top 5 states with highest donation count from 2019-2023",
     "description": "Bump chart showing top 5 states by donation count over the years.",
     "data": {
         "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/top5_states_each_year.csv"
@@ -136,8 +184,8 @@ const bumpChartSpec = {
         "type": "line",
         "point": {"size": 200}
     },
-    "width": 450,
-    "height": 300,
+    "width": 600,
+    "height": 350,
     "encoding": {
         "x": {
             "field": "year",
@@ -167,9 +215,8 @@ const bumpChartSpec = {
 // Pie Chart
 const pieChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Donor Regularity",
     "width": 300,
-    "height": 300,
+    "height": 350,
     "data": {
         "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/donor_regularities.csv"
     },
@@ -209,15 +256,15 @@ const pieChartSpec = {
 };
 
 // Stacked Bar Chart
+// Stacked Bar Chart
 const stackedBarChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Total Blood Donations of States for Past Five Years ",
-    "width": 400,
-    "height": 300,
+    "width": 1000,
+    "height": 500,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
-        "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
-        "format": {"type": "csv"}
+      "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
+      "format": {"type": "csv"}
     },
     "params": [
       {
@@ -305,42 +352,44 @@ const stackedBarChartSpec = {
     ],
     "mark": "bar",
     "encoding": {
-        "x": {
-            "field": "state",
-            "type": "nominal",
-            "axis": {
-                "labelAngle": -45,
-                "title": "State"
-            }
-        },
-        "y": {
-            "aggregate": "sum",
-            "field": "donations",
-            "type": "quantitative",
-            "title": "Total Donations"
-        },
-        "color": {
-            "field": "blood_type",
-            "type": "nominal",
-            "title": "Blood Type",
-            "scale": {"scheme": "redyellowblue","type": "sequential"}
-        },
-        "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "blood_type", "type": "nominal", "title": "Blood Type"},
-            {"field": "donations", "type": "quantitative", "title": "Donations"}
-        ]
+      "x": {
+        "field": "state",
+        "type": "nominal",
+        "axis": {
+          "labelAngle": -45,
+          "title": "State"
+        }
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "donations",
+        "type": "quantitative",
+        "title": "Total Donations"
+      },
+      "color": {
+        "field": "blood_type",
+        "type": "nominal",
+        "title": "Blood Type",
+        "scale": {"scheme": "redyellowblue","type": "sequential"}
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "blood_type", "type": "nominal", "title": "Blood Type"},
+        {"field": "donations", "type": "quantitative", "title": "Donations"}
+      ]
     },
     "config": {
-        "view": {
-            "stroke": "transparent"
-        },
-        "axis": {
-            "labelFontSize": 12,
-            "titleFontSize": 14
-        }
+      "view": {
+        "stroke": "transparent"
+      },
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
     }
-};
+  };
+  
+
 
 
 // Embed Charts
@@ -348,6 +397,7 @@ vegaEmbed('#map', mapSpec);
 vegaEmbed('#bump-chart', bumpChartSpec);
 vegaEmbed('#pie-chart', pieChartSpec);
 vegaEmbed('#stacked-bar-chart', stackedBarChartSpec);
+
 </script>
 
 </body>
