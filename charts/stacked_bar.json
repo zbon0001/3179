@@ -112,7 +112,7 @@
         "field": "blood_type",
         "type": "nominal",
         "title": "Blood Type",
-        "scale": {"scheme": "redyellowblue","type": "sequential"}
+        "scale": {"scheme": "yellowgreenblue","type": "sequential"}
       },
       "tooltip": [
         {"field": "state", "type": "nominal", "title": "State"},

@@ -24,17 +24,21 @@
                 {
                     "calculate": "datum['Percentage of Population'] == null ? 0 : datum['Percentage of Population']",
                     "as": "Population Percentage"
+                },
+                {
+                  "calculate": "datum['Population Percentage'] >= 1 && datum['Population Percentage'] <= 1.5 ? '1-1.5' : datum['Population Percentage'] >= 1.5 && datum['Population Percentage'] < 2 ? '1.5-2' : datum['Population Percentage'] >= 2 &&datum['Population Percentage'] < 3 ? '2-3' : datum['Population Percentage'] >= 3 &&datum['Population Percentage'] < 5 ? '3-5' : datum['Population Percentage'] >= 5 && datum['Population Percentage'] <= 12 ? '5-12' : 'Other'",
+                  "as": "Population Bin"
                 }
             ],
             "mark": {"type": "geoshape"},
             "encoding": {
                 "color": {
-                "field": "Percentage of Population",
-                "type": "quantitative",
-                "scale": {
-                    "scheme": "reds",
-                    "type": "sequential"
-                },
+                    "field": "Population Bin",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["1-1.5", "1.5-2", "2-3", "3-5", "5-12"],
+                        "range": ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26"]
+                    },
                 "legend": {
                   "title": "Percentage of Population",
                   "orient": "bottom"

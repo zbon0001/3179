@@ -33,10 +33,13 @@
         "title": "Rank"
       },
       "color": {
-        "field": "state",
-        "type": "nominal",
-        "title": "State",
-        "legend": {"title": "State"}
+          "field": "state",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+              "scheme": "inferno"
+          },
+          "legend": {"title": "State"}
       },
       "tooltip": [
         {"field": "state", "type": "nominal", "title": "State"},

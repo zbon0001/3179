@@ -17,40 +17,37 @@
             text-align: center; /* Centers the header image */
             margin-bottom: 20px; /* Space below the header */
         }
-        .header-image {
-            width: 100%;
-            max-width: 1350px; /* Matches the width of your charts */
-            height: auto;
-            display: block;
-            margin: 0 auto; /* Centers the image */
-        }
         h1 {
             text-align: center;
             font-size: 2.5em;
             color: #333;
             margin-bottom: 40px;
         }
+
+
         .chart-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold;
             text-align: center;
             margin-bottom: 10px;
         }
         .stat-description {
             text-align: center;
-            font-size: 1.1em;
+            font-size: 0.9em;
             color: #666;
             margin-bottom: 20px;
         }
         .container {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Creates a 2-column grid */
-            grid-gap: 20px; /* Space between the grid items */
+            grid-gap: 30px; /* Space between the grid items */
+            max-width: 1220px; /* Sets a maximum width for the container */
+            margin: 0 auto; /* Centers the container horizontally */
         }
         .map-container {
             grid-column: span 2; /* Make the map span across both columns */
             background-color: #ffffff;
-            padding: 50px;
+            padding: 100px;
             border: 1px solid #ddd;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -81,8 +78,8 @@
             Percentage of Population Aged 17-65 Who Donated
         </div>
         <div class="stat-description">
-            The map indicates significant regional disparities in blood donation rates across states. The highest percentages of donors are concentrated in specific states, particularly in western Malaysia, with a notable absence of data or lower rates in several eastern regions. This suggests a potential need for targeted awareness campaigns and donation drives in areas with lower participation rates. 
-        </div>
+            The <span style="font-weight: bold; color: rgb(214, 3, 3);">highest</span> percentages of donors are concentrated in specific states, particularly in <span style="font-weight: bold; color: black;">western</span> Malaysia, with notable <span style="font-weight: bold; color: rgb(213, 112, 78);">lower</span> rates in several <span style="font-weight: bold; color: black;">eastern</span> regions. This suggests a potential need for targeted awareness campaigns and donation drives in areas with lower participation rates.  
+        </div>               
         <div id="map"></div>
     </div>
 
@@ -92,7 +89,7 @@
             Top 5 States with Highest Donation Count (2019-2023)
         </div>
         <div class="stat-description">
-            The bump chart illustrates trends in blood donation counts over the years. Kuala Lumpur  consistently show higher donation counts, indicating robust donor engagement in these states. In contrast, other state, such as Perak, exhibit fluctuations, with some years showing significant decreases. Understanding these trends can help identify effective strategies and interventions for improving donation rates in states experiencing declines.        </div>
+            <span style="font-weight: bold; color: rgb(255, 200, 0);">Kuala Lumpur </span>show <span style="font-weight: bold; color: black;">consistently higher</span> donation counts, indicating robust donor engagement in these states. <span style="font-weight: bold; color: rgb(185, 1, 136);">Perak</span>, exhibit <span style="font-weight: bold; color: black;">fluctuations</span>, with some years showing significant decreases. Understanding these trends can help identify effective strategies and interventions for <span style="font-weight: bold; color: black;">improving donation rates</span> in states experiencing declines.        </div>
         <div id="bump-chart"></div>
     </div>
 
@@ -102,7 +99,7 @@
             Donor Regularity by State
         </div>
         <div class="stat-description">
-            From the chart, it can be observed that regular donors make up the largest portion, indicating a stable base of committed individuals who donate blood consistently. This is encouraging, as regular donors are crucial for maintaining a reliable blood supply. However, the presence of new donors and lapsed donors suggests opportunities for growth.         </div>
+            <span style="font-weight: bold; color: rgb(95, 179, 243);">Regular donors</span> make up the <span style="font-weight: bold; color: rgb(0, 0, 0);">largest</span> portion, indicating a stable base of committed individuals who donate blood consistently. However, the presence of <span style="font-weight: bold; color: rgb(255, 229, 63);">new donors</span> and <span style="font-weight: bold; color: rgb(250, 112, 0);">lapsed donors</span> suggests opportunities for <span style="font-weight: bold; color: rgb(0, 0, 0);">growth</span>.         </div>
         <div id="pie-chart"></div>
     </div>
 
@@ -112,17 +109,24 @@
             Total Blood Donations by Blood Type (2019-2023)
         </div>
         <div class="stat-description">
-            The stacked bar chart reveals the distribution of total blood donations by type over five years. Type O blood has the highest donation volume, highlighting its critical importance for transfusions. This trend underlines the need for ongoing efforts to promote donations of less common blood types, such as AB, to ensure a balanced blood supply that meets patient needs.        </div>
+            <span style="font-weight: bold; color: rgb(0, 13, 189);">Type O</span> blood has the <span style="font-weight: bold; color: rgb(0, 0, 0);">highest</span> donation volume, highlighting its critical importance for <span style="font-weight: bold; color: rgb(0, 0, 0);">transfusions</span> . This trend underlines the need for ongoing efforts to <span style="font-weight: bold; color: rgb(0, 0, 0);">promote</span> donations of <span style="font-weight: bold; color: rgb(0, 0, 0);">less common</span> blood types, such as <span style="font-weight: bold; color: rgb(102, 223, 221);">AB</span>, to ensure a balanced blood supply that meets patient needs.        </div>
         <div id="stacked-bar-chart"></div>
     </div>
+
+    <div class="stat-description" style="text-align: left;">
+        Visualisation by: <span style="font-weight: bold; color: rgb(0, 0, 0);">Bong Zhang Wang</span>  |  
+        Data Source: <span style="font-weight: bold; color: rgb(0, 0, 0);">data.gov.my - </span>
+        https://data.gov.my/data-catalogue/blood_donations_state , https://data.moh.gov.my/dashboard/blood-donation
+    </div>
+    
 </div>
 <script>
 
 // Map Chart
 const mapSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1600,
-    "height": 650,
+    "width": 1000,
+    "height": 500,
     "projection": {"type": "equalEarth"},
     "layer": [
         {
@@ -144,16 +148,19 @@ const mapSpec = {
                 {
                     "calculate": "datum['Percentage of Population'] == null ? 0 : datum['Percentage of Population']",
                     "as": "Population Percentage"
+                },{
+                  "calculate": "datum['Population Percentage'] >= 1 && datum['Population Percentage'] <= 1.5 ? '1-1.5' : datum['Population Percentage'] >= 1.5 && datum['Population Percentage'] < 2 ? '1.5-2' : datum['Population Percentage'] >= 2 &&datum['Population Percentage'] < 3 ? '2-3' : datum['Population Percentage'] >= 3 &&datum['Population Percentage'] < 5 ? '3-5' : datum['Population Percentage'] >= 5 && datum['Population Percentage'] <= 12 ? '5-12' : 'Other'",
+                  "as": "Population Bin"
                 }
             ],
             "mark": {"type": "geoshape"},
             "encoding": {
                 "color": {
-                    "field": "Percentage of Population",
-                    "type": "quantitative",
+                    "field": "Population Bin",
+                    "type": "nominal",
                     "scale": {
-                        "scheme": "reds",
-                        "type": "sequential"
+                        "domain": ["1-1.5", "1.5-2", "2-3", "3-5", "5-12"],
+                        "range": ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26"]
                     },
                     "legend": {
                         "title": "Percentage of Population",
@@ -194,8 +201,8 @@ const bumpChartSpec = {
         "type": "line",
         "point": {"size": 200}
     },
-    "width": 820,
-    "height": 400,
+    "width": 400,
+    "height": 300,
     "encoding": {
         "x": {
             "field": "year",
@@ -211,6 +218,9 @@ const bumpChartSpec = {
             "field": "state",
             "type": "nominal",
             "title": "State",
+            "scale": {
+                "scheme": "inferno"
+            },
             "legend": {"title": "State"}
         },
         "tooltip": [
@@ -225,8 +235,8 @@ const bumpChartSpec = {
 // Pie Chart
 const pieChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 300,
-    "height": 350,
+    "width": 250,
+    "height": 300,
     "data": {
         "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/donor_regularities.csv"
     },
@@ -269,23 +279,35 @@ const pieChartSpec = {
 // Stacked Bar Chart
 const stackedBarChartSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1500,
-    "height": 600,
+    "width": 900,
+    "height": 500,
     "description": "Stacked bar chart of blood donations by blood type, filtered by year and selected states.",
     "data": {
       "url": "https://raw.githubusercontent.com/zbon0001/3179/refs/heads/main/charts/filtered_stacked_bar_blood_groups.csv",
       "format": {"type": "csv"}
     },
+  "transform": [
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "groupby": ["year"],
+      "sort": [{"field": "donations", "order": "ascending"}]
+    },
+    {
+      "filter": "datum.rank <= 5"
+    },
+    
+  ],
     "params": [
-      {
-        "name": "yearSelect",
-        "value": 2019,
-        "bind": {
-          "input": "select",
-          "options": [2019, 2020, 2021, 2022, 2023],
-          "name": "Select Year: "
-        }
-      },
+    {
+      "name": "sliderYear",
+      "value": 2019,  
+      "bind": {
+        "input": "range",
+        "min": 2019,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Year (Slider): "
+      }},
       {
         "name": "Johor",
         "value": true,
@@ -353,9 +375,9 @@ const stackedBarChartSpec = {
       }
     ],
     "transform": [
-      {
-        "filter": "datum.year == yearSelect"
-      },
+        {
+        "filter": "(datum.year == sliderYear)"
+        },
       {
         "filter": "(datum.state == 'Johor' && Johor) || (datum.state == 'Kedah' && Kedah) || (datum.state == 'Kelantan' && Kelantan) || (datum.state == 'Melaka' && Melaka) || (datum.state == 'Negeri Sembilan' && Negeri_Sembilan) || (datum.state == 'Pahang' && Pahang) || (datum.state == 'Penang' && Penang) || (datum.state == 'Perak' && Perak) || (datum.state == 'Selangor' && Selangor) || (datum.state == 'Terengganu' && Terengganu) || (datum.state == 'Sabah' && Sabah) || (datum.state == 'Sarawak' && Sarawak) || (datum.state == 'W.P. Kuala Lumpur' && Wp_Kuala_Lumpur)"
       }
@@ -380,7 +402,7 @@ const stackedBarChartSpec = {
         "field": "blood_type",
         "type": "nominal",
         "title": "Blood Type",
-        "scale": {"scheme": "redyellowblue","type": "sequential"}
+        "scale": {"scheme": "yellowgreenblue","type": "sequential"}
       },
       "tooltip": [
         {"field": "state", "type": "nominal", "title": "State"},
